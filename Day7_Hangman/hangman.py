@@ -14,7 +14,7 @@ print("secret word is: " + chosen_word)
 
 # game play loop
 while gameOver == False:
-  print(''.join(displayWord))
+  print(' '.join(displayWord))
   guess = input("Pick a letter! \n")
   if chosen_word.find(guess) > -1:
     for i in range(0, len(chosen_word)):
