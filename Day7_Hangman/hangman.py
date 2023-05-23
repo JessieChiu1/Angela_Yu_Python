@@ -10,7 +10,6 @@ gameOver = False
 
 for char in range(0,len(chosen_word)):
   displayWord.append("_")
-print("secret word is: " + chosen_word)
 
 # game play loop
 while gameOver == False:

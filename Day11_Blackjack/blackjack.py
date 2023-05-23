@@ -64,9 +64,9 @@ def blackjack():
                 computer["score"]["altTotal"]["sum"])
         ]
         for total in player["score"]:
-        if player["score"][total]["sum"] > output[1] <= 21:
-            output[0] = "Player"
-            output[1] = player["score"][total]["sum"]
+            if player["score"][total]["sum"] > output[1] <= 21:
+                output[0] = "Player"
+                output[1] = player["score"][total]["sum"]
         return output
 
     #set the score card

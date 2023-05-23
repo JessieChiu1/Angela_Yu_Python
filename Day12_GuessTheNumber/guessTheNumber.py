@@ -3,7 +3,7 @@ import random
 
 def guessNumGame():
     print("Welcome to Guess the Number Game!")
-    level = input("Chooses 'easy' or 'hard' difficulty level").lower()
+    level = input("Chooses 'easy' or 'hard' difficulty level \n").lower()
     if level == "easy":
         lives = 10
     else:
@@ -11,7 +11,7 @@ def guessNumGame():
 
     gameOver = False
     num = random.randint(0, 101)
-    while lives > 0 or not gameOver:
+    while not gameOver:
         guess = int(input("Pick a Number between 1 and 100 \n"))
         if num == guess:
             print(f"You guess the number: {num}")
@@ -19,10 +19,13 @@ def guessNumGame():
         elif num > guess:
             print("Too low! Guess Again!")
             lives -= 1
-            print(f"You have {lives} lives left")
         else:
             print("Too High! Guess Again!")
             lives -= 1
+
+        if lives == 0:
+            print("You lost!")
+        elif not gameOver:
             print(f"You have {lives} lives left")
 
 

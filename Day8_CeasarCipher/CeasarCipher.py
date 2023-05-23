@@ -5,15 +5,15 @@ text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
 def encrypt(direction, text , shift):
-  output = []
-  if direction.lower() == "encode":
-    for char in text:
-      newI = (alphabet.index(char) + shift)% 26
-      output.append(alphabet[newI])
-  else:
-    for char in text:
-      newI = (alphabet.index(char) - shift)% 26
-      output.append(alphabet[newI])
-  print("".join(output))
+    output = []
+    if direction.lower() == "encode":
+        for char in text:
+            newI = (alphabet.index(char) + shift)% 26
+            output.append(alphabet[newI])
+    else:
+        for char in text:
+            newI = (alphabet.index(char) - shift)% 26
+            output.append(alphabet[newI])
+    print("".join(output))
   
 encrypt(direction, text, shift)

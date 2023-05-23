@@ -29,10 +29,10 @@ def calculate ():
     answer = function(num1, num2)
     print(f"{num1} {symbol} {num2} = {answer}")
   
-    isCalcOver = input("Type 'y' to continue calculatng with {answer}, 'n' to exit")
+    isCalcOver = input(f"Type 'y' to continue calculating with {answer}, 'n' to exit")
     if isCalcOver == "y":
       num1 = answer
     else:
-      calculate()
+      calcOver = True
 
 calculate()
