@@ -14,7 +14,7 @@ class Quiz_Brain:
         if self.question_number != len(self.question_list) - 1:
             q = self.question_list[self.question_number]
             response = input(f"{self.question_number}: {q.text} (True/False)?\n")
-            if response == q.answer:
+            if response.lower() == q.answer.lower():
                 print("You got it right!")
                 self.add_one_score()
             else:
