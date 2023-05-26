@@ -11,7 +11,7 @@ class Quiz_Brain:
         self.score += 1
 
     def play_game(self):
-        while self.question_number != len(self.question_list) - 1:
+        if self.question_number != len(self.question_list) - 1:
             q = self.question_list[self.question_number]
             response = input(f"{self.question_number}: {q.text} (True/False)?\n")
             if response == q.answer:
@@ -20,6 +20,9 @@ class Quiz_Brain:
             else:
                 print("That's wrong.")
             print(f"The correct answer was: {q.answer}.")
-            print(f"Your current score is: {self.score}/{self.question_number + 1}")
+            print(f"Your current score is: {self.score}/{self.question_number + 1}\n")
             self.next_question()
             self.play_game()
+        else:
+            print("You've completed the quiz!")
+            print(f"Your final score is {self.score}/{self.question_number + 1}")
