@@ -1,51 +1,44 @@
 import time
-from turtle import Turtle, Screen
+from turtle import Screen
+from snake import Snake
 
-# Screen setup
+# ==============================
+# Screen setup & variable setup
+# ==============================
+
 screen = Screen()
 screen.bgcolor("black")
 screen.setup(width=600, height=600)
 screen.title("Snake")
+game_on = True
 # Disable animation initially
 screen.tracer(0)
 
+# ===========
 # Snake setup
-pos = [(-40, 0), (-20, 0), (0, 0)]
-snakes = []
+# ===========
+snakes = Snake()
+print(snakes)
 
-for i in range(0, 3):
-    snake = Turtle("square")
-    snake.penup()
-    snake.color("white")
-    snake.goto(pos[i])
-    snakes.append(snake)
+# =====================
+# Screen event listener
+# =====================
 
-# Snake movement
-direction = "right"
-game_on = True
+screen.listen()
+screen.onkey(snakes.set_direction_up, "Up")
+screen.onkey(snakes.set_direction_down, "Down")
+screen.onkey(snakes.set_direction_right, "Right")
+screen.onkey(snakes.set_direction_left, "Left")
 
-# Logic is that technically at each tick, the only changes are the tails disappear a new head appear
+
+# =========
+# game loop
+# =========
+
 while game_on:
-
-    # pop the position and snake of the tail in lists
-    snake = snakes.pop(0)
-    pos.pop(0)
-    if direction == "right":
-        snake.setx(snakes[-1].xcor() + 20)
-    elif direction == "left":
-        snake.setx(snakes[-1].xcor() - 20)
-    elif direction == "up":
-        snake.sety(snakes[-1].ycor() + 20)
-    elif direction == "down":
-        snake.sety(snakes[-1].ycor() - 20)
-    # add the new snake head and position to the lists
-    pos.append(tuple(snake.pos()))
-    snakes.append(snake)
-
-    # tick and update the screen
+    snakes.move()
+    # tick and manually update the screen after the new snake list is configured
     screen.update()
     time.sleep(0.1)
 
-
 screen.exitonclick()
-
