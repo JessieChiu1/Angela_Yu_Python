@@ -1,6 +1,8 @@
 import time
 from turtle import Screen
 from snake import Snake
+from food import Food
+from scoreboard import Scoreboard
 
 # ==============================
 # Screen setup & variable setup
@@ -15,10 +17,11 @@ game_on = True
 screen.tracer(0)
 
 # ===========
-# Snake setup
+# Class setup
 # ===========
 snakes = Snake()
-print(snakes)
+food = Food()
+scoreboard = Scoreboard()
 
 # =====================
 # Screen event listener
@@ -30,7 +33,6 @@ screen.onkey(snakes.set_direction_down, "Down")
 screen.onkey(snakes.set_direction_right, "Right")
 screen.onkey(snakes.set_direction_left, "Left")
 
-
 # =========
 # game loop
 # =========
@@ -40,5 +42,11 @@ while game_on:
     # tick and manually update the screen after the new snake list is configured
     screen.update()
     time.sleep(0.1)
+
+    #Detect collision with food
+    if snakes.list[0].distance(food) < 15:
+        food.refresh()
+        scoreboard.scored()
+
 
 screen.exitonclick()
