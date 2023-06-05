@@ -8,11 +8,18 @@ class Snake:
         self.list = []
         self.direction = "right"
         for position in self.position:
-            snake = Turtle("square")
-            snake.penup()
-            snake.color("white")
-            snake.goto(position)
-            self.list.append(snake)
+            self.create_snake(position)
+
+    def create_snake(self, position):
+        snake = Turtle("square")
+        snake.penup()
+        snake.color("white")
+        snake.goto(position)
+        self.list.append(snake)
+
+    def extend(self):
+        self.create_snake(self.position[-1])
+
 
     def move(self):
         """
