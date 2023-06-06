@@ -34,9 +34,9 @@ screen.onkey(snakes.set_direction_down, "Down")
 screen.onkey(snakes.set_direction_right, "Right")
 screen.onkey(snakes.set_direction_left, "Left")
 
-# =========
-# game loop
-# =========
+# =============
+# gameplay loop
+# =============
 
 while game_on:
     # tick and manually update the screen after the new snake list is configured
