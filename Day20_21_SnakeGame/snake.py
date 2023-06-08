@@ -7,8 +7,7 @@ class Snake:
         self.position = [(-40, 0), (-20, 0), (0, 0)]
         self.list = []
         self.direction = "right"
-        for position in self.position:
-            self.create_snake(position)
+        self.create_starting()
 
     def create_snake(self, position):
         snake = Turtle("square")
@@ -17,13 +16,22 @@ class Snake:
         snake.goto(position)
         self.list.append(snake)
 
+    def create_starting(self):
+        for position in self.position:
+            self.create_snake(position)
+
     def extend(self):
         self.create_snake(self.position[-1])
 
+    def reset(self):
+        for body in self.list:
+            body.goto(1000, 1000)
+        self.list.clear()
+        self.position = [(-40, 0), (-20, 0), (0, 0)]
+        self.create_starting()
 
     def move(self):
         """
-
         :param pos: set of snake's positions
         :param self.direction: self.direction of arrow
         :return: none

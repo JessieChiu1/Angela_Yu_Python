@@ -51,20 +51,18 @@ while game_on:
     if snakes.list[0].distance(food) < 15:
         food.refresh()
         scoreboard.scored()
-        time.sleep(0.1)
         extend = True
 
     # Detect collision with walls
     if snakes.list[0].xcor() > 280 or snakes.list[0].xcor() < -280 or snakes.list[0].ycor() > 280 or snakes.list[0].ycor() < -280:
-        game_on = False
-        scoreboard.gameOver()
+        scoreboard.reset()
+        snakes.reset()
 
     # Detect collision with body it is supposed to be from list[1:] onward but because we don't know the specific
     # distance calculation [2:] works better
     for body in snakes.list[2:]:
         if snakes.list[0].distance(body) < 10:
-            game_on = False
-            scoreboard.gameOver()
-            print(snakes.position)
+            scoreboard.reset()
+            snakes.reset()
 
 screen.exitonclick()
