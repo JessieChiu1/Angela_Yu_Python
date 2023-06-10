@@ -55,7 +55,7 @@ while game_on:
         extend = True
 
     # Detect collision with walls
-    if snakes.list[0].xcor() > 280 or snakes.list[0].xcor() < -280 or snakes.list[0].ycor() > 280 or snakes.list[0].ycor() < -280:
+    if snakes.list[0].xcor() > 290 or snakes.list[0].xcor() < -290 or snakes.list[0].ycor() > 280 or snakes.list[0].ycor() < -280:
         scoreboard.reset()
         snakes.reset()
 
