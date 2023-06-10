@@ -24,6 +24,7 @@ snakes = Snake()
 food = Food()
 scoreboard = Scoreboard()
 
+
 # =====================
 # Screen event listener
 # =====================

@@ -11,6 +11,7 @@ class Scoreboard(Turtle):
         self.hideturtle()
         self.penup()
         self.sety(270)
+        self.find_high_score()
         self.write_score()
 
     def scored(self):
@@ -23,6 +24,15 @@ class Scoreboard(Turtle):
 
     def reset(self):
         if self.score > self.high_score:
-            self.high_score = self.score
+            self.set_high_score()
         self.score = 0
         self.write_score()
+
+    def find_high_score(self):
+        with open("data.txt") as file:
+            content = file.read()
+            self.high_score = int(content)
+
+    def set_high_score(self):
+        with open("data.txt", mode="w") as file:
+            file.write(f"{self.score}")
