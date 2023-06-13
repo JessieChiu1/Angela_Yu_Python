@@ -14,7 +14,6 @@ turtle.shape(image)
 screen.tracer(0)
 game_on = True
 
-
 # ============
 # States setup
 # ============
