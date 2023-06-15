@@ -1,4 +1,7 @@
 import turtle
+
+import pandas
+
 from states import State
 import pandas as pd
 
@@ -38,6 +41,13 @@ while game_on:
 
     # Gameplay loop
     guess = screen.textinput("Player Input", "Name a State").lower()
+    if guess == "exit":
+        missing_states = [state.name for state in states_class_list]
+        new_data = pandas.DataFrame(missing_states)
+        new_data.to_csv("states_to_learn.csv")
+        game_on = False
+        screen.bye()
+
     if guess is not None:
         for state in states_class_list:
             if guess == state.name.lower():
