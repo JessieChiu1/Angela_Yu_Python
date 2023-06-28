@@ -4,6 +4,8 @@ from tkinter import *
 window = Tk()
 window.title("widget placement tutorial")
 window.minsize(width=500, height=300)
+# add padding of window, can use the .config(padx, pady) for speicfic widget also
+window.config(padx=20, pady=20)
 
 # Label
 my_label = Label(text="I am a label", font=("Arial", 24, "bold"))
@@ -17,12 +19,15 @@ def button_clicked():
 
 
 button = Button(text="Click Me", command=button_clicked)
-button.grid(column=1, row=1)
+button.grid(column=2, row=0)
+
+button2 = Button(text="button2")
+button2.grid(column=1, row=1)
 
 # Entry
 entry = Entry(width=30)
 entry.insert(END, "Some placeholder text")
-entry.grid(column=2, row=2)
+entry.grid(column=3, row=2)
 
 # There are 3 main layout manager pack(), place(), grid()
 # Pack(self?)
@@ -33,7 +38,7 @@ entry.grid(column=2, row=2)
     # All about precise positioning
 # grid(column, row)
     # This think of the whole window as a grid and put the widget according to the grid column and row structure
-    # You CANNOT mix up grid and place in the same tkinter window
+    # You CANNOT mix up grid and pack in the same tkinter window
 
 
 window.mainloop()
