@@ -109,7 +109,6 @@ def count_down(timer, ):
 
 # button event listener when the start button is clicked
 def start_clicked():
-
     sequence_label.config(text="Work")
     current_timer = pomodoro_cycle[current_cycle_index]
     count_down(current_timer)
