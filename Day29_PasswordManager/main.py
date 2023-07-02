@@ -1,8 +1,16 @@
 import tkinter
 from tkinter import *
 from tkinter import messagebox
+import random
+import pyperclip
 
 GREEN = "#90EE91"
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+           'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+           'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+char_list = letters + numbers + symbols
 
 # ============
 # Window Setup
@@ -43,6 +51,21 @@ def write_to_file():
         pw_entry.delete(0, END)
 
 
+# ==================
+# Password generator
+# ==================
+
+def generate_pw():
+    chars = []
+    pw_length = random.randint(10, 20)
+    for _ in range(0, pw_length):
+        chars.append(random.choice(char_list))
+    pw = ''.join(chars)
+    pw_entry.delete(0, END)
+    pw_entry.insert(0, pw)
+    pyperclip.copy(pw)
+
+
 # =============
 # Widgets setup
 # =============
@@ -65,7 +88,7 @@ pw_label = Label(text="Password:")
 pw_label.grid(column=0, row=3)
 pw_entry = Entry(width=20)
 pw_entry.grid(column=1, row=3)
-pw_generate_button = Button(text="Generate Password", bg=GREEN, fg="white", borderwidth=0)
+pw_generate_button = Button(text="Generate Password", bg=GREEN, fg="white", borderwidth=0, command=generate_pw)
 pw_generate_button.grid(column=2, row=3, pady=5)
 
 # Add button
