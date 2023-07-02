@@ -3,6 +3,8 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+# json.dump() to write, json.load() to read, json.update() to update
+import json
 
 GREEN = "#90EE91"
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -30,25 +32,64 @@ canvas.create_image(200, 100, image=photo)
 canvas.grid(column=0, row=0, columnspan=3)
 
 
-# =============
-# Write to file
-# =============
+# ==============
+# Add login info
+# ==============
+# When using the json.dump() always use the option indent=4 to add 4 space for any tab to format file
 
 
 def write_to_file():
     website = website_entry.get()
     username = username_entry.get()
     pw = pw_entry.get()
+
+    # The data you dump into the JSON should be a dictionary
+    new_data = {
+        website: {
+            "email": username,
+            "password": pw,
+        }
+    }
     # check if any of the field is empty
     if website == "" or username == "" or pw == "":
-        messagebox.showinfo(title="Error", message="One or more field are empty.")
+        messagebox.showerror(title="Error", message="One or more field are empty.")
     else:
-        with open("loginInfo.txt", mode="a") as text:
-            text.write(f"{website} | {username} | {pw}\n")
-        # delete what the user entered if we add the info to our file
-        website_entry.delete(0, END)
-        username_entry.delete(0, END)
-        pw_entry.delete(0, END)
+        try:
+            with open("loginInfo.json", mode="r") as file:
+                # Reading the old data
+                data = json.load(file)
+        except FileNotFoundError:
+            with open("loginInfo.json", mode="w") as file:
+                json.dump(new_data, file, indent=4)
+        else:
+            # Updating old data with new data
+            # If you don't use the json.update() the new_data won't be added to the dictionary properly
+            data.update(new_data)
+            with open("loginInfo.json", mode="w") as file:
+                # Saving updated data
+                json.dump(data, file, indent=4)
+        finally:
+            # delete what the user entered if we add the info to our file
+            website_entry.delete(0, END)
+            username_entry.delete(0, END)
+            pw_entry.delete(0, END)
+
+
+# =====================
+# Search for login info
+# =====================
+
+def search():
+    try:
+        website = website_entry.get()
+        with open("loginInfo.json", mode="r") as file:
+            data = json.load(file)
+            username = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=f"Login Info for {website}", message=f"Email/Username: {username}\nPassword: "
+                                                                           f"{password}")
+    except KeyError:
+        messagebox.showerror(title="Website not found", message="There is no login information for this website")
 
 
 # ==================
@@ -73,9 +114,13 @@ def generate_pw():
 # website entry field
 website_label = Label(text="Website:")
 website_label.grid(column=0, row=1)
-website_entry = Entry(width=42)
-website_entry.grid(column=1, row=1, columnspan=2, pady=5)
+website_entry = Entry(width=20)
+website_entry.grid(column=1, row=1, pady=5)
 website_entry.focus()
+
+# Search for a website button
+search_button = Button(text="Search", bg=GREEN, fg="white", borderwidth=0, width=14, command=search)
+search_button.grid(column=2, row=1, pady=5)
 
 # email/username
 username_label = Label(text="Email/Username:")
