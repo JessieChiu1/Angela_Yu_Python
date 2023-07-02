@@ -2,9 +2,6 @@ from typing import List
 
 import pandas as pd
 
-# TODO 1. Create a dictionary in this format:
-# {"A": "Alfa", "B": "Bravo"}
-
 df = pd.read_csv("nato_phonetic_alphabet.csv")
 
 # this works the same as the list comprehension
@@ -21,8 +18,13 @@ data_dict = {row.letter: row.code for _, row in df.iterrows()}
 
 # TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
-word = input("Enter a word:").upper()
+def generate_phonetic():
+    word = input("Enter a word:").upper()
+    nato_list = [data_dict[letter] for letter in word]
+    print(nato_list)
 
-nato_list = [data_dict[letter] for letter in word]
-
-print(nato_list)
+try:
+    generate_phonetic()
+except KeyError:
+    print("Sorry, only letters in the alphabet please.")
+    generate_phonetic()
