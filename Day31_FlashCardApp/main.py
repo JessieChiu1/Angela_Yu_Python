@@ -46,7 +46,7 @@ else:
 canvas = Canvas(width=420, height=250)
 canvas.config(bg="pink")
 word_text = canvas.create_text(220, 75, text="", font=("Arial", 40, "bold"))
-def_text = canvas.create_text(220, 150, text="", font=("Arial", 15, "italic"))
+def_text = canvas.create_text(220, 150, text="", font=("Arial", 15, "italic"), width=400)
 # You have to add the pady here not in the button for some reason???
 canvas.grid(column=0, row=0, columnspan=2, pady=10)
 
