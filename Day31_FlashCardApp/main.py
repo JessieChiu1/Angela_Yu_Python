@@ -11,6 +11,7 @@ TIMER = 3
 INCORRECT_JSON = "incorrect.json"
 CORRECT_JSON = "correct.json"
 WORD_LIST_JSON = "word_list.json"
+GREEN = "#e8f4ea"
 
 # ============
 # Window setup
@@ -44,8 +45,8 @@ else:
 
 canvas = Canvas(width=420, height=250)
 canvas.config(bg="pink")
-word_text = canvas.create_text(220, 75, text="placeholder", font=("Arial", 40, "bold"))
-def_text = canvas.create_text(220, 150, text="placeholder def", font=("Arial", 15, "italic"))
+word_text = canvas.create_text(220, 75, text="", font=("Arial", 40, "bold"))
+def_text = canvas.create_text(220, 150, text="", font=("Arial", 15, "italic"))
 # You have to add the pady here not in the button for some reason???
 canvas.grid(column=0, row=0, columnspan=2, pady=10)
 
@@ -63,16 +64,13 @@ def new_word():
     return word
 
 
-# At init choose a word
-# GLOBAL
-current_word = new_word()
-
-
 def count_down(timer):
     if timer > 0:
         window.after(1000, count_down, timer - 1)
+        canvas.config(bg="pink")
     else:
         canvas.itemconfig(def_text, text=current_word["Definition"])
+        canvas.config(bg=GREEN)
 
 
 def write_to_file(fileName):
@@ -104,6 +102,13 @@ def click_check():
     current_word = new_word()
     count_down(TIMER)
 
+
+# ==========
+# Init setup
+# ==========
+
+current_word = new_word()
+count_down(TIMER)
 
 # ============
 # button setup
