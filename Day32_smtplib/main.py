@@ -35,6 +35,7 @@ for person in data:
             draft_content = draft.read()
             letter = draft_content.replace("[NAME]", person["name"]) + "\n"
 
+        # sending email
         with smtplib.SMTP("smtp.gmail.com") as connection:
             connection.starttls()
             connection.login(user=email_address, password=password)
