@@ -99,7 +99,7 @@ radiobutton2.pack()
 
 
 # Listbox
-def listbox_used():
+def listbox_used(event):
     print(listbox.get(listbox.curselection()))
 
 
@@ -111,7 +111,7 @@ for item in fruits:
     # takes 2 argument, first WHERE to insert the item and second the item name
     # Can also use the END to specify to insert at the end
     listbox.insert(fruits.index(item), item)
-listbox.bind("<<ListboxSelect>>>", listbox_used)
+listbox.bind("<<ListboxSelect>>", listbox_used)
 listbox.pack()
 
 window.mainloop()

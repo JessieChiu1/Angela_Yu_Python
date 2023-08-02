@@ -106,7 +106,7 @@ In this case the IntVar() function created a variable called radio_state that ca
 `radiobutton2.pack()`
 
 # Listbox
-`def listbox_used():`
+`def listbox_used(event):`
 `    print(listbox.get(listbox.curselection()))`
 
 `listbox = tk.Listbox(height=4)`
@@ -122,6 +122,9 @@ loop through the list to INSERT the item as a tkinter listbox item
 takes 2 argument, first WHERE to insert the item and second the item name
 an also use the END to specify to insert at the end
 
-`    listbox.insert(fruits.index(item), item)`
+`listbox.insert(fruits.index(item), item)`
+
+the bind method, takes 2 arguments, 1st is the event to listen for, and 2nd is the function that will trigger
+
 `listbox.bind("<<ListboxSelect>>", listbox_used)`
 `listbox.pack()`
