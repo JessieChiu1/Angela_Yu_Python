@@ -170,31 +170,44 @@ def start_quiz():
         gameplay_loop()
 
 
+# each gamplay loop render the question's text and create a button for each possible answers
 def gameplay_loop():
+    # choose and set question's text on canvas
     current_question = random.choice(QUESTIONS)
+    # must use html.unescape(TEXT) to translate the text to more readable text
     canvas.itemconfig(question_text, text=html.unescape(current_question["question"]), width=580)
+    # append all possible answers into a list and shuffle it
     answers = current_question["incorrect_answers"]
     answers.append(current_question["correct_answer"])
     random.shuffle(answers)
 
+    # create a button for each answer
     for answer in answers:
-        answer_button = Button(text=html.unescape(answer), width=20, wraplength=100, padx=5, anchor="center",
+        # must use html.unescape(TEXT) to translate the text to more readable text
+        answer_button = Button(text=html.unescape(answer), width=20, wraplength=100, padx=5,
                                command=lambda event, q=current_question: click_answer(event, q))
         answer_button.grid(column=answers.index(answer), row=1, padx=5, pady=5)
         answer_button.bind("<Button-1>", lambda event, q=current_question: click_answer(event, q))
         widgets.append(answer_button)
 
 
+# function that is fire after an answer is clicked
 def click_answer(event, question):
     global score
+    # cast the button being click to a variable and grab the text
     answer_button = event.widget
     answer = answer_button.cget("text")
+    # compare answer to the html.unescape(correct_answer)
     if answer == html.unescape(question["correct_answer"]):
         score += 1
+    # remove the question from the QUESTIONS list
     QUESTIONS.remove(question)
+    # remove all the button
     clear_widgets()
+    # run the gameplay loop again if there is still questions left
     if QUESTIONS:
         gameplay_loop()
+    # print score
     else:
         canvas.itemconfig(question_text, text=f"Quiz Completed, Your final score is {score}/{NUM_QUESTIONS}")
 
