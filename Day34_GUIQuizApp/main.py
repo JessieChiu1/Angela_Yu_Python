@@ -189,8 +189,7 @@ def gameplay_loop():
     # create a button for each answer
     for answer in answers:
         # must use html.unescape(TEXT) to translate the text to more readable text
-        answer_button = Button(text=html.unescape(answer), width=20, wraplength=100, padx=5,
-                               command=lambda event, q=current_question: click_answer(event, q))
+        answer_button = Button(text=html.unescape(answer), width=20, wraplength=100, padx=5)
         answer_button.grid(column=answers.index(answer), row=2, padx=5, pady=5)
         answer_button.bind("<Button-1>", lambda event, q=current_question: click_answer(event, q))
         widgets.append(answer_button)
@@ -203,9 +202,20 @@ def click_answer(event, question):
     answer_button = event.widget
     answer = answer_button.cget("text")
     # compare answer to the html.unescape(correct_answer)
+    # change background color to green or red based on if answer is correct
     if answer == html.unescape(question["correct_answer"]):
         score += 1
         score_label.config(text=f"Score: {score}")
+        canvas.config(bg="#77DD77")
+    else:
+        canvas.config(bg="#dd5840")
+    # wait 1 sec and then run the remove_question function
+    # have to separate like this because the way window.after works is that it schedules the given function to be called after the specified delay (in milliseconds). It does not block the execution of other parts of your program while waiting for the delay to pass
+    window.after(1000, lambda: remove_question(question))
+
+
+def remove_question(question):
+    canvas.config(bg="pink")
     # remove the question from the QUESTIONS list
     QUESTIONS.remove(question)
     # remove all the button
@@ -215,6 +225,7 @@ def click_answer(event, question):
         gameplay_loop()
     # print score
     else:
+        score_label.config(text="")
         canvas.itemconfig(question_text, text=f"Quiz Completed, Your final score is {score}/{NUM_QUESTIONS}")
 
 
