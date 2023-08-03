@@ -37,9 +37,13 @@ def clear_widgets():
         widget.destroy()
 
 
+score_label = Label(text="")
+score_label.grid(column=0, row=0)
+
 canvas = Canvas(width=600, height=400)
 question_text = canvas.create_text(300, 200, text="", font=("Arial", 20, "bold"))
-canvas.grid(column=0, row=0, columnspan=4, pady=10)
+canvas.grid(column=0, row=1, columnspan=4, pady=10)
+
 
 # ==============
 # Quiz API setup
@@ -63,7 +67,7 @@ for category in CATEGORIES:
     categories_listbox.insert(END, category["name"])
 
 categories_listbox.bind("<<ListboxSelect>>", select_category)
-categories_listbox.grid(column=0, row=0, padx=5, pady=5)
+categories_listbox.grid(column=0, row=1, padx=5, pady=5)
 widgets.append(categories_listbox)
 
 
@@ -75,7 +79,7 @@ def spinbox_used():
 
 
 spinbox = Spinbox(from_=1, to=50, width=5, command=spinbox_used)
-spinbox.grid(column=1, row=0, padx=5, pady=5)
+spinbox.grid(column=1, row=1, padx=5, pady=5)
 widgets.append(spinbox)
 
 # Selecting Difficulty
@@ -98,7 +102,7 @@ for diff in difficulties:
     diff_listbox.insert(END, diff)
 
 diff_listbox.bind("<<ListboxSelect>>", select_difficulty)
-diff_listbox.grid(column=2, row=0, padx=5, pady=5)
+diff_listbox.grid(column=2, row=1, padx=5, pady=5)
 widgets.append(diff_listbox)
 
 # Selecting Type
@@ -122,7 +126,7 @@ for t in types:
     type_listbox.insert(END, t)
 
 type_listbox.bind("<<ListboxSelect>>", select_type)
-type_listbox.grid(column=3, row=0, padx=5, pady=5)
+type_listbox.grid(column=3, row=1, padx=5, pady=5)
 widgets.append(type_listbox)
 
 
@@ -156,7 +160,7 @@ def button_click():
 
 
 button = Button(text="Start Quiz", command=button_click)
-button.grid(column=4, row=0, padx=5, pady=5)
+button.grid(column=4, row=1, padx=5, pady=5)
 widgets.append(button)
 
 
@@ -167,6 +171,7 @@ def start_quiz():
     global QUESTIONS
     global score
     if QUESTIONS:
+        score_label.config(text="Score: 0")
         gameplay_loop()
 
 
@@ -186,7 +191,7 @@ def gameplay_loop():
         # must use html.unescape(TEXT) to translate the text to more readable text
         answer_button = Button(text=html.unescape(answer), width=20, wraplength=100, padx=5,
                                command=lambda event, q=current_question: click_answer(event, q))
-        answer_button.grid(column=answers.index(answer), row=1, padx=5, pady=5)
+        answer_button.grid(column=answers.index(answer), row=2, padx=5, pady=5)
         answer_button.bind("<Button-1>", lambda event, q=current_question: click_answer(event, q))
         widgets.append(answer_button)
 
@@ -200,6 +205,7 @@ def click_answer(event, question):
     # compare answer to the html.unescape(correct_answer)
     if answer == html.unescape(question["correct_answer"]):
         score += 1
+        score_label.config(text=f"Score: {score}")
     # remove the question from the QUESTIONS list
     QUESTIONS.remove(question)
     # remove all the button
