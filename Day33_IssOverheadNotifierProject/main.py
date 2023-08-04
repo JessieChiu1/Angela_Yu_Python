@@ -11,8 +11,8 @@ import time
 # then send me an email to tell me to look up
 # BONUS: run the code every 60 seconds.
 
-MY_LAT = 40.628826
-MY_LNG = -73.961694
+MY_LAT = 40.678177
+MY_LNG = -73.944160
 margin = 5
 smtp_email = "smtp.gmail.com"
 
