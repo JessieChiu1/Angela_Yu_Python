@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+from twilio.rest import Client
 
 # ===============
 # fetch from .env
