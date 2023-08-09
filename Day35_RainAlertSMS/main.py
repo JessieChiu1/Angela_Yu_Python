@@ -2,6 +2,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from twilio.rest import Client
+# You can use pythonanawhere to host and schedule a time for your python code to run, I will not do that because twillo will cost me money
 
 # ===============
 # fetch from .env
@@ -11,6 +12,10 @@ load_dotenv()
 lat = os.environ.get("LAT")
 lon = os.environ.get("LON")
 api_ley = os.environ.get("API_KEY")
+account_sid = os.environ.get("ACCOUNT_SID")
+auth_token = os.environ.get("AUTH_TOKEN")
+my_number = os.environ.get("MY_NUMBER")
+twilio_number = os.environ.get("TWILIO_NUMBER")
 
 # ======================
 # fetching data from API
@@ -42,3 +47,12 @@ def check_rain(weather_data):
             return True
     return False
 
+
+if check_rain(weather_data):
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+        body="It's going to rain today. Remember your umbrella!",
+        from_=f"+{twilio_number}",
+        to=f"+{my_number}"
+    )
+    print(message.status)
