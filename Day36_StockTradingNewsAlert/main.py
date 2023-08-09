@@ -74,7 +74,7 @@ def fetch_news():
 # send SMS
 # ========
 
-if now.hour > 0:
+if now.hour > 18:
     # btc data
     BTC_data = fetch_btc_data()
     today_closing = float(BTC_data[f"{today}"]["4a. close (USD)"])
@@ -90,14 +90,14 @@ if now.hour > 0:
 
         Today's Price change: {price_change}%
         Top 3 News:
-        {news_data[0]["title"]} by {news_data[0]["author"]}
-        {news_data[0]["url"]}
+        {news_data[0]['title']} by {news_data[0]['author']}
+        {news_data[0]['url']}
 
-        {news_data[1]["title"]} by {news_data[1]["author"]}
-        {news_data[1]["url"]}
+        {news_data[1]['title']} by {news_data[1]['author']}
+        {news_data[1]['url']}
 
-        {news_data[2]["title"]} by {news_data[2]["author"]}
-        {news_data[2]["url"]}""",
+        {news_data[2]['title']} by {news_data[2]['author']}
+        {news_data[2]['url']}""",
         from_=f"+{twilio_number}",
         to=f"+{my_number}"
     )
