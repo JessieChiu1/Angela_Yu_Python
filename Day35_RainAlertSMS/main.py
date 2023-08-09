@@ -11,7 +11,7 @@ load_dotenv()
 
 lat = os.environ.get("LAT")
 lon = os.environ.get("LON")
-api_ley = os.environ.get("API_KEY")
+api_key = os.environ.get("API_KEY")
 account_sid = os.environ.get("ACCOUNT_SID")
 auth_token = os.environ.get("AUTH_TOKEN")
 my_number = os.environ.get("MY_NUMBER")
@@ -24,7 +24,7 @@ twilio_number = os.environ.get("TWILIO_NUMBER")
 api_parameters = {
     "lat": lat,
     "lon": lon,
-    "appid": api_ley
+    "appid": api_key
 }
 
 url = "https://api.openweathermap.org/data/2.5/forecast"
