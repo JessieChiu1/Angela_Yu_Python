@@ -72,3 +72,18 @@ post_pixel_parameters = {
 
 # response = requests.post(url=post_pixel_endpoint, headers=headers, json=post_pixel_parameters)
 # print(response.text)
+
+# =============================
+# PUT request: updating a pixel
+# =============================
+
+# PUT pixel request: https://docs.pixe.la/entry/put-pixel
+
+put_pixel_endpoint = f"{pixela_endpoint}/{username}/graphs/{graphID}/{today}"
+
+put_pixel_parameters = {
+    "quantity": "6",
+}
+
+response = requests.put(url=put_pixel_endpoint, headers=headers, json=put_pixel_parameters)
+print(response.text)
