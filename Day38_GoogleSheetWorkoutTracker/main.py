@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+import datetime as dt
 
 # ===========
 # load dotenv
@@ -25,6 +26,8 @@ query = input("Tell me which exercises you did: ")
 # Post exercise endpoint
 # ======================
 
+# https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit#
+
 headers = {
     "x-app-id": app_id,
     "x-app-key": api_key,
@@ -41,4 +44,32 @@ post_exercise_parameters = {
 post_exercise_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
 
 response = requests.post(url=post_exercise_endpoint, json=post_exercise_parameters, headers=headers)
-print(response.text)
+result = response.json()
+data = result["exercises"]
+
+# ==========================================
+# Making requests to Google Sheet via Sheety
+# ==========================================
+
+# https://sheety.co/docs/requests
+
+sheety_endpoint = "https://api.sheety.co/4552723523d54bde250ecd98364af758/myWorkoutsTracker/workouts"
+
+today = dt.datetime.today().strftime("%m/%d/%Y")
+time = dt.datetime.now().time().strftime('%H:%M:%S')
+
+for exercise in data:
+    post_workout_data = {
+        "workout": {
+            "date": today,
+            "time": time,
+            "exercise": exercise["user_input"],
+            "duration": exercise["duration_min"],
+            "calories": exercise["nf_calories"],
+        }
+    }
+
+    response = requests.post(url=sheety_endpoint, json=post_workout_data)
+    print(response.text)
+
+
