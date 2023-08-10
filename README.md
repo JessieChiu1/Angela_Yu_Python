@@ -2,6 +2,9 @@
 
 Go to subfolder and run `py main.py` to view project for each day
 
+## rewriting git history (removing sensitive data)
+https://www.youtube.com/watch?v=Bo-8EfDpKxA&ab_channel=DanGitschooldude
+
 ## List Comprehension
 `new_list = [new_item for item in list if test]`
 
