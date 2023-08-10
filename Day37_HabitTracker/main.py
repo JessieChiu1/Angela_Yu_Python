@@ -85,5 +85,17 @@ put_pixel_parameters = {
     "quantity": "6",
 }
 
-response = requests.put(url=put_pixel_endpoint, headers=headers, json=put_pixel_parameters)
-print(response.text)
+# response = requests.put(url=put_pixel_endpoint, headers=headers, json=put_pixel_parameters)
+# print(response.text)
+
+# ==============
+# delete a pixel
+# ==============
+
+# Delete a pixel request: https://docs.pixe.la/entry/delete-pixel
+
+# I am aware this is the same end point as the put request, I am just writing here for clarity sakess
+delete_pixel_endpoint = f"{pixela_endpoint}/{username}/graphs/{graphID}/{today}"
+
+# response = requests.delete(url=delete_pixel_endpoint, headers=headers)
+# print(response.text)
