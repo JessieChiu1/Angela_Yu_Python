@@ -15,6 +15,7 @@ gender = os.environ.get("GENDER")
 weight_kg = os.environ.get("WEIGHT_KG")
 height_cm = os.environ.get("HEIGHT_CM")
 age = os.environ.get("AGE")
+auth_token = os.environ.get("AUTH_TOKEN")
 
 # ===========
 # prompt User
@@ -69,7 +70,11 @@ for exercise in data:
         }
     }
 
-    response = requests.post(url=sheety_endpoint, json=post_workout_data)
+    headers = {
+        "Authorization": f"Bearer {auth_token}"
+    }
+
+    response = requests.post(url=sheety_endpoint, json=post_workout_data, headers=headers)
     print(response.text)
 
 
