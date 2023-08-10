@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+import datetime as dt
 
 # ===============
 # Fetch from .env
@@ -37,9 +38,10 @@ user_parameters = {
 # create graph: https://docs.pixe.la/entry/post-graph
 
 graph_endpoint = f"{pixela_endpoint}/{username}/graphs"
+graphID = "graph1"
 
 graph_parameters = {
-    "id": "graph1",
+    "id": graphID,
     "name": "Coding Habit Graph",
     "unit": "commit",
     "type": "int",
@@ -51,4 +53,22 @@ headers = {
 }
 
 # response = requests.post(url=graph_endpoint, headers=headers, json=graph_parameters)
+# print(response.text)
+
+# ==============
+# adding a pixel
+# ==============
+
+# POST pixel request: https://docs.pixe.la/entry/post-pixel
+
+post_pixel_endpoint = f"{pixela_endpoint}/{username}/graphs/{graphID}"
+
+today = dt.datetime.today().strftime("%Y%m%d")
+
+post_pixel_parameters = {
+    "date": today,
+    "quantity": "5",
+}
+
+# response = requests.post(url=post_pixel_endpoint, headers=headers, json=post_pixel_parameters)
 # print(response.text)
