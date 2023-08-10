@@ -53,6 +53,7 @@ data = result["exercises"]
 # ==========================================
 
 # https://sheety.co/docs/requests
+# https://sheety.co/docs/authentication.html
 
 sheety_endpoint = "https://api.sheety.co/4552723523d54bde250ecd98364af758/myWorkoutsTracker/workouts"
 
