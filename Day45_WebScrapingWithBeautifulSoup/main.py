@@ -1,16 +1,29 @@
-# This is a sample Python script.
+import requests
+from bs4 import BeautifulSoup
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+response = requests.get(url="https://web.archive.org/web/20200518073855/https://www.empireonline.com/movies/features/best-movies-2/")
 
+html = response.text
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+soup = BeautifulSoup(html, "html.parser")
 
+movie_list_html = soup.find(name="div", class_="gallery")
+movie_sections = movie_list_html.find_all(name="section", class_="gallery__content-item--gallery")
+# print(len(movie_sections))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# list to store all the movie
+movie_list = []
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+for i in range(0, len(movie_sections)):
+    title_div_tag = movie_sections[i].find(name="h3")
+    title = title_div_tag.text
+    movie_list.append(title)
+
+movie_list.reverse()
+
+print(movie_list)
+
+# if you get UnicodeEncodeError, add encoding="utf-8"
+with open("top100MovieList.txt", mode="w", encoding="utf-8") as file:
+    for movie in movie_list:
+        file.write(f"{movie}\n")
