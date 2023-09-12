@@ -101,4 +101,4 @@ for i in range(len(city_data)):
                         msg=f"Subject: {search_result.flyFrom} price alert\n\nOnly ${search_result.price} to fly from {search_result.cityFrom}-{search_result.cityCodeFrom} at {search_result.flyFrom} airport to {search_result.cityTo}-{search_result.cityCodeTo} at {search_result.flyTo}, from {search_result.local_arrival} to {search_result.local_departure}",
                     )
     except IndexError:
-        print(f"there is no search result for {city_data[i].iataCode}")
+        print(f"there is no search result for flight to {city_data[i].iataCode}")
