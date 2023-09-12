@@ -11,3 +11,17 @@ Example of dictionary list comprehension from pandas's csv file
 
 `data = [{"Word": row[1], "Definition": row[3]} for _, row in df.iterrows()]`
 
+## Web Scrapping Okay?
+if you have an url add "/robot.txt" will tell you what endpoints they allow/disallow
+
+example: https://news.ycombinator.com/robots.txt
+
+User-Agent: *
+Disallow: /x?
+Disallow: /r?
+Disallow: /vote?
+Disallow: /reply?
+Disallow: /submitted?
+Disallow: /submitlink?
+Disallow: /threads?
+Crawl-delay: 30
