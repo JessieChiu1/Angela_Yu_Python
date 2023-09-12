@@ -128,3 +128,16 @@ for i in range(len(city_data)):
         response.raise_for_status()
         print(response.text)
 
+        # sending an email alert
+        # ======================
+        smtp_email = "smtp.gmail.com"
+        with smtplib.SMTP(smtp_email) as connection:
+            connection.starttls()
+            connection.login(user=email_address, password=email_password)
+            connection.sendmail(
+                from_addr=email_address,
+                to_addrs=email_address,
+                msg=f"Subject: {search_result.flyFrom} price alert\n\nOnly ${search_result.price} to fly from {search_result.cityFrom}-{search_result.cityCodeFrom} at {search_result.flyFrom} airport to {search_result.cityTo}-{search_result.cityCodeTo} at {search_result.flyTo}, from {search_result.local_arrival} to {search_result.local_departure}",
+            )
+
+
