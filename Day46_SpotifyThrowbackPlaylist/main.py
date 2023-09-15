@@ -90,3 +90,14 @@ for i in range(0, len(song_names)):
         print(f"can't find {song_names[i]} by {artist_names[i]} on spotify")
 
 # print(song_uri)
+
+# =========================
+# Creating Spotify Playlist
+# =========================
+
+# fetch user id
+user_id = user_info = sp.current_user()["id"]
+# create new playlist
+playlist = sp.user_playlist_create(user=user_id, name=f"{date} Billboard 100", public=False)
+# added the songs
+sp.playlist_add_items(playlist_id=playlist["id"], items=song_uri)
