@@ -33,8 +33,25 @@ song_names = [song.find(name="h3", id="title-of-a-story").text.strip() for song 
 # print(song_names)
 
 # find the artist name
-artist_names = [song.find_all(name="span")[1].text.strip() for song in song_containers]
-# print(artist_names[0])
+# We have to do this with span tag because the class name is not very readable
+# basically, it is either the index item at position 1/3 of the span list
+# if it is a new or re-entry to the top 100, it will be the 3rd span tag
+
+artist_names = []
+for song in song_containers:
+    span_tags = song.find_all(name="span")
+    if span_tags[1].text.strip() == "NEW" or span_tags[1].text.strip() == "RE-\nENTRY":
+        artist_names.append(span_tags[3].text.strip())
+    else:
+        artist_names.append(span_tags[1].text.strip())
+
+# removing any extra artists to only include the first artist name
+artist_names = [artist.split("Featuring")[0].strip() for artist in artist_names]
+artist_names = [artist.split("&")[0].strip() for artist in artist_names]
+artist_names = [artist.split(" X ")[0].strip() for artist in artist_names]
+artist_names = [artist.split(" x ")[0].strip() for artist in artist_names]
+artist_names = [artist.split(" / ")[0].strip() for artist in artist_names]
+# print(artist_names)
 
 # ====================
 # Spotipy Access Token
@@ -44,20 +61,31 @@ artist_names = [song.find_all(name="span")[1].text.strip() for song in song_cont
 
 # this is like your 0Auth info
 # scope - what you allow the project can do
-# cache_path - saving the token somewhere
-# sp_auth = SpotifyOAuth(
-#     client_id=spotify_client_id,
-#     client_secret=spotify_client_secret,
-#     redirect_uri="http://example.com",
-#     scope="playlist-modify-private",
-#     cache_path="token.txt",
-#     username=spotify_username,
-# )
-#
-# # Send the OAuth object to get an access token
-# access_token_info = sp_auth.get_access_token()
+# # cache_path - saving the token somewhere
+sp_auth = SpotifyOAuth(
+    client_id=spotify_client_id,
+    client_secret=spotify_client_secret,
+    redirect_uri="http://example.com",
+    scope="playlist-modify-private",
+    cache_path="token.txt",
+    username=spotify_username,
+    show_dialog=True,
+)
 
 # ======================
 # Spotipy Querying Songs
 # ======================
 
+# signing into spotify
+sp = spotipy.Spotify(auth_manager=sp_auth)
+song_uri = []
+
+for i in range(0, len(song_names)):
+    query = f"track:{song_names[i]} year:{date.split('-')[0]}"
+    search_result = sp.search(q=f"track:{song_names[i]} artist:{artist_names[i]}", type="track", limit=1)
+    if search_result["tracks"]["items"]:
+        song_uri.append(search_result["tracks"]["items"][0]["uri"])
+    else:
+        print(f"can't find {song_names[i]} by {artist_names[i]} on spotify")
+
+print(len(song_uri))
