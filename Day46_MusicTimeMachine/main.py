@@ -54,7 +54,7 @@ artist_names = [artist.split(" / ")[0].strip() for artist in artist_names]
 # print(artist_names)
 
 # ====================
-# Spotipy Access Token
+# Signing into Spotify
 # ====================
 
 # https://spotipy.readthedocs.io/en/2.13.0/#spotipy.oauth2.SpotifyOAuth
@@ -72,20 +72,21 @@ sp_auth = SpotifyOAuth(
     show_dialog=True,
 )
 
-# ======================
-# Spotipy Querying Songs
-# ======================
-
 # signing into spotify
 sp = spotipy.Spotify(auth_manager=sp_auth)
+
+# ==========================
+# Spotipy Querying Songs URI
+# ==========================
+
 song_uri = []
 
 for i in range(0, len(song_names)):
-    query = f"track:{song_names[i]} year:{date.split('-')[0]}"
+    query = f"track:{song_names[i]} artist:{artist_names[i]}"
     search_result = sp.search(q=f"track:{song_names[i]} artist:{artist_names[i]}", type="track", limit=1)
     if search_result["tracks"]["items"]:
         song_uri.append(search_result["tracks"]["items"][0]["uri"])
     else:
         print(f"can't find {song_names[i]} by {artist_names[i]} on spotify")
 
-print(len(song_uri))
+# print(song_uri)
