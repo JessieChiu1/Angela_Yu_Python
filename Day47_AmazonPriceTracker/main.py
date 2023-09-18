@@ -65,7 +65,7 @@ print(product_name)
 # Sending email when price drop below a certain price
 # ===================================================
 
-target_price = 35
+target_price = 31
 
 if price < target_price:
     with smtplib.SMTP("smtp.gmail.com") as connection:
@@ -74,5 +74,5 @@ if price < target_price:
         connection.sendmail(
             from_addr=email_address,
             to_addrs=email_address,
-            msg=f"Subject: Amazon Price Alert for \n\n {product_name} currently below ${target_price}"
+            msg=f"Subject: Amazon Price Alert \n\n {product_name} currently below ${target_price}"
         )
