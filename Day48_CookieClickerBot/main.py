@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common import StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -48,60 +49,25 @@ def click_cookie(count):
 
 
 def buy_store():
-    store_container = driver.find_elements(By.CSS_SELECTOR, value="#product unlocked enabled")
+    store_container = driver.find_elements(By.CSS_SELECTOR, value=".product.unlocked.enabled")
     store_container.reverse()
+    # buy all possible upgrade from most expensive to least
     for store in store_container:
         store.click()
 
 
 def buy_upgrade():
-    upgrade_container = driver.find_elements(By.CLASS_NAME, value="crate upgrade")
-    for upgrade in upgrade_container:
-        upgrade.click()
+    upgrade_container = driver.find_elements(By.CSS_SELECTOR, value=".crate.upgrade")
+    # this just buy the first upgrade since when you buy an upgrade, it disappears, and it will run into the StaleElementReferenceException error
+    if upgrade_container:
+        upgrade_container[0].click()
 
 
-def save_game():
-    # click option and save game button
-    option_button = driver.find_element(By.CLASS_NAME, value="subButton")
-    option_button.click()
-    save_button = driver.find_element(By.XPATH, value='/div/div/div[4]/a[1]')
-    save_button.click()
+# =============
+# gameplay loop
+# =============
 
-    # wait until the text area pop up
-    wait.until(EC.element_to_be_clickable((By.ID, "textareaPrompt")))
-    # copy and save the code to a txt
-    save_code_tag = driver.find_element((By.ID, "textareaPrompt"))
-    save_code = save_code_tag.text
-    with open("save_code.txt", mode="w") as file:
-        file.write(save_code)
-
-    # click option button again to close option
-    option_button.click()
-
-
-def load_game():
-    # wrapped everything in a try except clause in case we don't have a save code ready
-    try:
-        # get our save code
-        with open("save_code.txt", mode="r") as file:
-            content = file.read()
-
-        # click option and load save
-        option_button = driver.find_element(By.CLASS_NAME, value="subButton")
-        option_button.click()
-        load_save_button = driver.find_element(By.XPATH, value='/div/div/div[4]/a[2]')
-        load_save_button.click()
-
-        # wait until text are pop up and paste the save code to the text are
-        wait.until(EC.element_to_be_clickable((By.ID, "textareaPrompt")))
-        load_code_tag = driver.find_element((By.ID, "textareaPrompt"))
-        load_code_tag.send_keys(content)
-
-        # load the save code
-        load_button = driver.find_element(By.ID, value="promptOption0")
-        load_button.click()
-
-        # close the option menu
-        option_button.click()
-    except:
-        print("error")
+while True:
+    click_cookie(50)
+    buy_upgrade()
+    buy_store()
