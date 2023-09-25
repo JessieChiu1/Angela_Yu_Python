@@ -2,6 +2,7 @@
 
 ## Demo Video
 
+<img src="https://github.com/JessieChiu1/Angela_Yu_Python/blob/main/Day20_21_SnakeGame/Snake-game-demo.gif" width="800px" alt="Snake Game Demo"/>
 
 ## Introduction
 
