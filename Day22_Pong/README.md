@@ -2,7 +2,7 @@
 
 ## Demo Video
 
-<img src="https://github.com/JessieChiu1/Angela_Yu_Python/blob/main/Day22_Pong/Pong-game-demo.gif" width="800px" alt="Snake Game Demo"/>
+<img src="https://github.com/JessieChiu1/Angela_Yu_Python/blob/main/Day22_Pong/Pong-game-demo.gif" width="800px" alt="Pong Game Demo"/>
 
 ## Introduction
 

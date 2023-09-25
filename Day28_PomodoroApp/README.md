@@ -4,7 +4,7 @@
 
 This is a speed up version of the app!
 
-<img src="https://github.com/JessieChiu1/Angela_Yu_Python/blob/main/Day28_PomodoroApp/Pomodoro-demo.gif" width="800px" alt="Snake Game Demo"/>
+<img src="https://github.com/JessieChiu1/Angela_Yu_Python/blob/main/Day28_PomodoroApp/Pomodoro-demo.gif" width="800px" alt="Pomodoro App Demo"/>
 
 ## Introduction
 
