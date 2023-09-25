@@ -83,7 +83,7 @@ def count_down(timer, ):
     global current_cycle_index
     global current_timer_id
     if timer > 0:
-        current_timer_id = window.after(1000, count_down, timer - 1)
+        current_timer_id = window.after(10, count_down, timer - 1)
         canvas.itemconfig(timer_text, text=format_time(timer))
     # The else statement is when we roll over to the next cycle
     else:
@@ -99,7 +99,7 @@ def count_down(timer, ):
         else:
             sequence_label.config(text="Break")
         timer = pomodoro_cycle[current_cycle_index]
-        current_timer_id = window.after(1000, count_down, timer - 1)
+        current_timer_id = window.after(10, count_down, timer - 1)
         canvas.itemconfig(timer_text, text=format_time(timer))
         # add a check mark
         checkmark = check_label.cget("text")
