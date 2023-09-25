@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 # init driver
 # ===========
 
+# https://stackoverflow.com/questions/49921128/selenium-cant-click-element-because-other-element-obscures-it
 url = "https://www.apartments.com/"
 google_form_url = "https://docs.google.com/forms/d/e/1FAIpQLSflgA-TY8ajr5t8_0pdLtMzT5K_Mtpkxz0WlScOlkrlaSzl7g/viewform?usp=sf_link"
 chrome_options = webdriver.ChromeOptions()
