@@ -68,9 +68,9 @@ def fetch_news():
     return data["articles"]
 
 
-# ========
-# send SMS
-# ========
+# ==========
+# send email
+# ==========
 
 if now.hour > 18:
     # btc data
@@ -81,25 +81,29 @@ if now.hour > 18:
     news_data = fetch_news()
     # calculate price change
     price_change = today_btc_change(today_closing, yesterday_closing)
-    # create email body
-    body = f"""Bitcoin Daily Alert
-
-        Today's Price change: {price_change}%
-        Top 3 News:
-        {news_data[0]['title']} by {news_data[0]['author']}
-        {news_data[0]['url']}
-
-        {news_data[1]['title']} by {news_data[1]['author']}
-        {news_data[1]['url']}
-
-        {news_data[2]['title']} by {news_data[2]['author']}
-        {news_data[2]['url']}""",
     # send email with smtplib
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
         connection.login(user=email_address, password=password)
+
+        # Create the email message with proper UTF-8 encoding
+        subject = "Bitcoin Daily Alert"
+        message_body = f"""
+        Today's Price change: {price_change}%
+        Top 3 News:
+        {news_data[0]['title']} by {news_data[0]['author']}
+        {news_data[0]['url']}
+        {news_data[1]['title']} by {news_data[1]['author']}
+        {news_data[1]['url']}
+        {news_data[2]['title']} by {news_data[2]['author']}
+        {news_data[2]['url']}
+        """
+        msg = f"Subject: {subject}\n\n{message_body}"
+        msg = msg.encode('utf-8')
+
         connection.sendmail(
             from_addr=email_address,
             to_addrs=email_address,
-            msg=f"Subject:Bitcoin Daily Alert\n\n{body}"
+            msg=msg
         )
+
