@@ -2,7 +2,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from datetime import datetime, timedelta
-from twilio.rest import Client
+import smtplib
 
 # ===============
 # fetch from .env
@@ -11,10 +11,8 @@ load_dotenv()
 
 btc_api_key = os.environ.get("BTC_API_KEY")
 news_api_key = os.environ.get("NEWS_API_KEY")
-my_number = os.environ.get("MY_NUMBER")
-twilio_number = os.environ.get("TWILIO_NUMBER")
-account_sid = os.environ.get("ACCOUNT_SID")
-auth_token = os.environ.get("AUTH_TOKEN")
+email_address = os.environ.get("EMAIL_ADDRESS")
+password = os.environ.get("PASSWORD")
 
 # ===============
 # datetime module
@@ -83,10 +81,8 @@ if now.hour > 18:
     news_data = fetch_news()
     # calculate price change
     price_change = today_btc_change(today_closing, yesterday_closing)
-    # send SMS with twilio
-    client = Client(account_sid, auth_token)
-    message = client.messages.create(
-        body=f"""Bitcoin Daily Alert
+    # create email body
+    body = f"""Bitcoin Daily Alert
 
         Today's Price change: {price_change}%
         Top 3 News:
@@ -98,8 +94,12 @@ if now.hour > 18:
 
         {news_data[2]['title']} by {news_data[2]['author']}
         {news_data[2]['url']}""",
-        from_=f"+{twilio_number}",
-        to=f"+{my_number}"
-    )
-    print(message.status)
-
+    # send email with smtplib
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(user=email_address, password=password)
+        connection.sendmail(
+            from_addr=email_address,
+            to_addrs=email_address,
+            msg=f"Subject:Bitcoin Daily Alert\n\n{body}"
+        )
