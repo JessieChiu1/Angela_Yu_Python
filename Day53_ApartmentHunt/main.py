@@ -4,10 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
-
-time.sleep(5)
 from selenium.common.exceptions import NoSuchElementException, InvalidSelectorException
-from bs4 import BeautifulSoup
 
 # ===========
 # init driver
@@ -74,7 +71,6 @@ def get_apartments_info():
     driver.refresh()
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#placardContainer")))
     apartments = driver.find_elements(By.CSS_SELECTOR, "#placardContainer .mortar-wrapper:not(.carouselSpinner)")
-    print(len(apartments))
     for apartment in apartments:
         try:
             # find address
@@ -114,5 +110,17 @@ def get_apartments_info():
             raise SystemExit
 
 
+def next_page():
+    page_container = driver.find_element(By.ID, "paging")
+    try:
+        next_page_button = page_container.find_element(By.CLASS_NAME, "next")
+        next_page_button.click()
+        return True
+    except NoSuchElementException:
+        print("no more pages")
+        return False
+
 
 get_apartments_info()
+while next_page():
+    get_apartments_info()
