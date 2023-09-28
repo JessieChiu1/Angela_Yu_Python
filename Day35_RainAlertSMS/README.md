@@ -1,5 +1,9 @@
 # Rain Alert Notification with Twilio 🌧️☂️📱 
 
+## Demo SMS
+
+<img src="https://github.com/JessieChiu1/Angela_Yu_Python/blob/main/Day35_RainAlertSMS/Twilio-SMS.gif" width="800px" alt="Apartment Hunt Demo"/>
+
 ## Introduction
 
 This Python script provides a rain alert notification using the Twilio API. It fetches weather data from the OpenWeatherMap API based on latitude and longitude coordinates and checks if rain is expected within the next few hours. If rain is detected in the forecast, it sends an SMS notification to a specified phone number using Twilio.
