@@ -1,4 +1,4 @@
-# Chinese HSK Flash Card Study App
+# Chinese HSK Flash Card Study App 🇨🇳📖
 
 ## Demo Video
 
@@ -6,14 +6,18 @@
 
 ## Introduction
 
-This app is built to study for the Chinese HSK vocabulary. It used pandas to parse through an csv file with all the words and definitions.
+Welcome to the Chinese HSK Flash Card Study App! This application is designed to help you study and improve your Chinese HSK vocabulary. It utilizes the power of pandas to parse a CSV file containing a comprehensive list of words and their definitions.
 
-The screen will display a word and after 3 seconds will display the correct definition for given word.
+Key features of the app include:
 
-The user will click on either the check or X button to indicate whether they know the word or not. 
-
-The app will store your correct and incorrect word list to track progress.
+- Displaying a Chinese word for a brief moment, followed by the correct definition after 3 seconds.
+- Allowing users to indicate their knowledge of a word by clicking either the checkmark or X button.
+- Tracking and storing both correct and incorrect word lists to monitor your progress.
 
 ## Future Improvements / Potential Features
 
-I can add a feature where the words will show up again but if you know the word, they shows less frequently while the words you got wrong will show up more frequently.
+While the app is already a valuable tool for studying Chinese HSK vocabulary, there are potential enhancements and features for the future:
+
+- **Spaced Repetition**: Implement a feature where words you know well are shown less frequently, while words you struggle with appear more often, optimizing your learning.
+- **User Profiles**: Create user profiles to track progress and tailor word selection based on individual learning needs.
+- **Audio Pronunciation**: Include audio pronunciation for each word to improve listening and speaking skills.

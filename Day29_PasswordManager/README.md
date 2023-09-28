@@ -1,4 +1,4 @@
-# Password Manager
+# Password Manager 🔐
 
 ## Demo Video
 
@@ -6,13 +6,17 @@
 
 ## Introduction
 
-This app is built to manage and store your login/password for different website.
+Welcome to the Password Manager app! This application is designed to help you manage and securely store login/password information for different websites.
 
-It can:
-- retrieve login/password for sites
-- generate unique password and copy it to clipboard
-- add new login/password info for sites
+Key features of the app include:
+
+- Retrieving login/password information for websites.
+- Generating unique passwords and copying them to the clipboard.
+- Adding new login/password information for websites.
 
 ## Challenges
 
-When I switch from .txt file to .json for storing my passowrd info, I forgot to change the .gitignroe and accidentally push info to my GitHub. I had to learn how to remove those information in my commit history.
+During the development of this app, there were challenges, including:
+
+- Transitioning from .txt file storage to .json format, which involved updating the .gitignore file to prevent accidental pushes of sensitive information to GitHub. This required learning how to remove the information from commit history.
+

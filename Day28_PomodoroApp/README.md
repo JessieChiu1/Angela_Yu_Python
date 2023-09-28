@@ -1,4 +1,4 @@
-# Pomodoro App
+# Pomodoro App 🍅⌛
 
 ## Demo Video
 
@@ -8,10 +8,32 @@ This is a speed up version of the app!
 
 ## Introduction
 
-This app is built to emulate the Pomodoro Technique! It is a time management technique based on the tomato shape kitchen timer. This app will break down work/break interval and alternate between working and taking a break. 
+Welcome to the Pomodoro App! This app is designed to help you implement the Pomodoro Technique, a time management method inspired by the iconic tomato-shaped kitchen timer. The Pomodoro Technique breaks your work time into intervals, alternating between focused work and short breaks to boost productivity.
+
+Key features of the app include:
+
+- A visual representation of the Pomodoro timer with a tomato-shaped image.
+- Real-time countdown display.
+- Checkmarks to track completed work intervals.
+
+## Main App Code (main.py)
+
+The core functionality of the Pomodoro App is implemented in the `main.py` script. Here's an overview of its key components:
+
+- **CONSTANTS**: Defined constants for colors, fonts, and time intervals.
+
+- **Window and Canvas Setup**: Configuration of the main application window and canvas for displaying the timer.
+
+- **Countdown Mechanism**: The app's timer logic, including countdown and transitioning between work and break intervals.
+
+- **Button Event Listeners**: Event listeners for the "Start" and "Reset" buttons.
+
+- **Widget Setup**: Configuration and placement of labels, buttons, and checkmarks.
 
 ## Future Improvements / Potential Features
 
-I can add a feature that allows the user to determine the time interval.
+While the app is fully functional, there are potential areas for future enhancements:
 
-I can add a feature where the timer will ding when time is up to remind user to switch up the task at hand.
+- **Customizable Time Intervals**: Allow users to set their preferred work and break durations.
+
+- **Audio Notifications**: Implement audio alerts (dings) when a work or break interval ends to remind users to switch tasks.
