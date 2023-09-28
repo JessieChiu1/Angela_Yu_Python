@@ -37,5 +37,3 @@ Here's a list of the projects and exercises you'll find in this repository, each
 11. [Cookie Clicker Bot - Automate Cookie Clicker Game](https://github.com/JessieChiu1/Angela_Yu_Python/tree/main/Day48_CookieClickerBot)
 
 12. [Apartment Hunt - Automate Apartment Search](https://github.com/JessieChiu1/Angela_Yu_Python/tree/main/Day53_ApartmentHunt)
-
-Enjoy exploring these projects, each built independently with minimal instruction and often expanded beyond the original scope. I hope you find inspiration for your own coding journey. Happy coding! 🎉
