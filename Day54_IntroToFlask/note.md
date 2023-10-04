@@ -22,3 +22,30 @@ Some will add this line to the code to automatically run the server
 if __name__ == '__main__':
     app.run()
 ```
+
+### Python Decorators
+Decorator is just a function that wraps around another function and gives the other function some functionality
+
+Decorators are often used for tasks like logging, authentication, caching, and more. 
+
+```
+def delay_decorator(function):
+    def wrapper_function():
+        time.sleep(2)
+        function()
+    return wrapper_function
+    
+@delay_decorator
+def say_hello():
+    print("Hello")
+    
+ 
+def say_greeting():
+    pinrt("How are you?")   
+```
+
+The say_hello function will wait 2 sec before executing because of the `@delay_decorator`
+
+The Say_greeting function will execute immediately
+
+The `@app.route("/")` in flask is the python decorator, so the function with html is being wrap by the flask's decorator function in the flask library

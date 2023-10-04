@@ -1,1 +1,0 @@
-to run the application it is `flask --app {file name} run` in this case `flask --app main run`

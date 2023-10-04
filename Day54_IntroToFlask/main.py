@@ -13,7 +13,8 @@ print(__name__)
 
 
 # this is just routing
-# This is a Python decorators
+# This is a Python decorators symbol (@)
+# The `@app.route("/")` in flask is the python decorator, so the function with html is being wrap by the flask's decorator function in the flask library
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
