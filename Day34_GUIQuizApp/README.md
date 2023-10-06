@@ -32,10 +32,7 @@ During the development of this app, I encountered several challenges, including:
 
 - Managing multiple listbox widgets and preventing them from interfering with each other.
 - Dynamically fetching trivia questions from the Open Trivia API based on user selections.
-- Creating a responsive and engaging quiz experience with interactive buttons.
-- Displaying the final quiz score upon completion.
-
-I'm excited to share this app with you, and I hope you have as much fun using it as I did building it! 🚀
+- Making sure the button is not position awkwardly between T/F questions and MC questions.
 
 ## Future Improvements
 

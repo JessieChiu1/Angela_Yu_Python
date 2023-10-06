@@ -1,5 +1,10 @@
 # Intro to Flask - Serving up Static and CSS Files
 
+## Demo Video
+
+<img src="https://github.com/JessieChiu1/Angela_Yu_Python/blob/main/Day56_SamplePortfolioWebsite/Flask-sample-website.gif" width="800px" alt="Flask Sample Portfolio Website"/>
+
+
 ## Introduction
 
 This is a small project aimed at learning how to create dynamic web applications with Flask by serving static files and CSS stylesheets. Instead of hardcoding HTML content, we will use Flask's `render_template` function to render HTML templates and build a simple website with a personalized name card. Here are some key guidelines to follow:
